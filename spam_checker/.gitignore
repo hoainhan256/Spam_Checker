@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Django Stuff
+*.sqlite3
+*.log
+db.sqlite3
+media/
+staticfiles/
+*.pot
+
+# Env files
+.env
+*.env
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store
+
+# Virtualenv
+venv/
+env/
+
+# Migrations (tuỳ bạn, đôi lúc nên giữ lại)
+**/migrations/*.py
+!**/migrations/__init__.py
+spam_checker/bert_model/
+spam_email_lstm_model.keras
+tokenizer.pickle

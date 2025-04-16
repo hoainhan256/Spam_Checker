@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spam Email Checker</title>
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>📧 Spam Email Checker</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <label for="email_text">Nội dung email:</label>
+            <textarea name="email_text" required>{{ email_text|default_if_none:'' }}</textarea>
+
+            <label for="model_choice">Chọn mô hình:</label>
+            <select name="model_choice">
+                <option value="lstm" {% if model_choice == "lstm" %}selected{% endif %}>LSTM</option>
+                <option value="bert" {% if model_choice == "bert" %}selected{% endif %}>BERT</option>
+            </select>
+
+            <button type="submit">🧠 Dự đoán</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h2>Kết quả: <span class="{{ result|lower }}">{{ result }}</span></h2>
+            {% if confidence %}
+            <p>Prediction: <strong>{{ confidence }}</strong></p>
+            {% endif %}
+            {% if model_used %}
+            <p>Mô hình sử dụng: <strong>{{ model_used|upper }}</strong></p>
+            {% endif %}
+        </div>
+    {% endif %}
+    </div>
+</body>
+</html>
